@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website informasi dan aspirasi siswa SMAN 2 Ranah Pesisir.">
+  <title>SMAN 2 Ranah Pesisir</title>
+  <style>
+    :root {
+      --navy: #102b46;
+      --blue: #1767a5;
+      --sky: #eaf4fb;
+      --gold: #f0b84b;
+      --ink: #172b3c;
+      --muted: #607386;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #f7fafc;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .topbar {
+      background: var(--navy);
+      color: #eaf4fb;
+      padding: 9px 6%;
+      font-size: .88rem;
+      letter-spacing: .2px;
+    }
+    header {
+      background: rgba(255,255,255,.97);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 3px 18px rgba(16,43,70,.08);
+    }
+    .nav-wrap {
+      max-width: 1160px;
+      margin: auto;
+      min-height: 78px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .brand { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+    .crest {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: grid; place-items: center;
+      color: white; background: linear-gradient(145deg, var(--blue), var(--navy));
+      font-weight: 800; font-size: .9rem; letter-spacing: -1px;
+      border: 2px solid #d9e9f5;
+    }
+    .brand-name { font-weight: 800; color: var(--navy); line-height: 1.2; }
+    .brand-name small { display: block; font-size: .72rem; color: var(--muted); font-weight: 600; margin-top: 4px; }
+    nav { display: flex; align-items: center; gap: 26px; }
+    nav a { text-decoration: none; font-weight: 700; font-size: .92rem; color: #31495d; }
+    nav a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: white !important;
+      padding: 11px 17px; border-radius: 9px;
+    }
+    .menu-toggle {
+      display: none; border: 0; background: var(--sky); color: var(--navy);
+      border-radius: 8px; padding: 9px 12px; font-size: 1.2rem;
+    }
+    .hero {
+      color: white;
+      background:
+        linear-gradient(105deg, rgba(9,34,58,.94), rgba(18,91,145,.82)),
+        radial-gradient(circle at 85% 20%, rgba(240,184,75,.35), transparent 28%);
+      min-height: 510px;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-inner { max-width: 1160px; width: 100%; margin: auto; padding: 82px 24px; }
+    .eyebrow {
+      color: #ffcf70; text-transform: uppercase; font-size: .78rem;
+      font-weight: 800; letter-spacing: 2px;
+    }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.6rem); line-height: 1.08; max-width: 760px; margin: 18px 0; }
+    .hero p { max-width: 620px; color: #e1edf6; font-size: 1.1rem; margin: 0 0 30px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .btn {
+      display: inline-block; text-decoration: none; border-radius: 9px;
+      padding: 14px 21px; font-weight: 800; transition: .2s ease;
+    }
+    .btn-primary { background: var(--gold); color: #26384a; }
+    .btn-primary:hover { background: #ffd27a; transform: translateY(-2px); }
+    .btn-outline { border: 1px solid rgba(255,255,255,.65); color: white; }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+    .section { max-width: 1160px; margin: auto; padding: 76px 24px; }
+    .section-label { color: var(--blue); text-transform: uppercase; letter-spacing: 1.8px; font-size: .75rem; font-weight: 800; }
+    h2 { color: var(--navy); font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.2; margin: 9px 0 14px; }
+    .intro { max-width: 700px; color: var(--muted); margin: 0; }
+    .about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 38px; align-items: center; }
+    .about-panel {
+      min-height: 245px; border-radius: 18px; padding: 30px;
+      background: linear-gradient(145deg, #eaf4fb, #d8eaf7);
+      display: flex; flex-direction: column; justify-content: center;
+      border: 1px solid #d3e5f2;
+    }
+    .about-panel strong { color: var(--navy); font-size: 1.25rem; }
+    .about-panel p { color: #50677b; margin-bottom: 0; }
+    .features { background: white; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+    .feature {
+      border: 1px solid #e2ebf1; border-radius: 14px; padding: 24px;
+      background: #fff; box-shadow: 0 8px 25px rgba(16,43,70,.04);
+    }
+    .feature-icon {
+      width: 43px; height: 43px; display: grid; place-items: center;
+      border-radius: 12px; background: var(--sky); font-size: 1.25rem; margin-bottom: 14px;
+    }
+    .feature h3 { color: var(--navy); margin: 0 0 7px; }
+    .feature p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .aspiration {
+      background: var(--navy); color: white; border-radius: 20px;
+      padding: clamp(28px, 5vw, 52px); display: flex; justify-content: space-between;
+      align-items: center; gap: 25px;
+    }
+    .aspiration h2 { color: white; max-width: 580px; }
+    .aspiration p { color: #d7e5ef; max-width: 620px; margin-bottom: 0; }
+    footer { background: #0a2035; color: #d6e2eb; padding: 28px 24px; text-align: center; font-size: .88rem; }
+    footer strong { color: white; }
+    @media (max-width: 760px) {
+      .nav-wrap { min-height: 70px; }
+      .menu-toggle { display: block; }
+      nav {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: white; padding: 18px 24px 22px; flex-direction: column; align-items: stretch;
+        gap: 17px; box-shadow: 0 12px 16px rgba(16,43,70,.1);
+      }
+      nav.open { display: flex; }
+      nav a { padding: 5px 0; }
+      nav .nav-cta { text-align: center; padding: 11px; }
+      .hero { min-height: 470px; }
+      .hero-inner { padding-top: 65px; padding-bottom: 65px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .aspiration { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Selamat datang di website SMAN 2 Ranah Pesisir</div>
+  <header>
+    <div class="nav-wrap">
+      <a class="brand" href="#beranda" aria-label="Beranda SMAN 2 Ranah Pesisir">
+        <div class="crest">S2RP</div>
+        <div class="brand-name">SMAN 2 RANAH PESISIR<small>Website Informasi Sekolah</small></div>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+      <nav id="mainNav">
+        <a href="#beranda">Beranda</a>
+        <a href="#profil">Profil</a>
+        <a href="#informasi">Informasi</a>
+        <a class="nav-cta" href="https://docs.google.com/forms/d/e/1FAIpQLScL0wgz8B9TzNGdsqM_ShGYjJPk7ovZcKV_UJf1CWJhbn-57A/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">ASPIRASI SISWA ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-inner">
+        <div class="eyebrow">Pendidikan • Karakter • Prestasi</div>
+        <h1>Selamat Datang di<br>SMAN 2 Ranah Pesisir</h1>
+        <p>Ruang informasi sekolah dan wadah komunikasi untuk membangun lingkungan belajar yang aktif, nyaman, kreatif, dan inspiratif.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScL0wgz8B9TzNGdsqM_ShGYjJPk7ovZcKV_UJf1CWJhbn-57A/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Sampaikan Aspirasi</a>
+          <a class="btn btn-outline" href="#profil">Jelajahi Website</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profil">
+      <div class="about-grid">
+        <div>
+          <div class="section-label">Profil Sekolah</div>
+          <h2>Tempat Bertumbuh, Belajar, dan Berkarya</h2>
+          <p class="intro">SMAN 2 Ranah Pesisir menjadi bagian dari perjalanan pendidikan generasi muda. Melalui semangat belajar, kedisiplinan, dan kerja sama, seluruh warga sekolah dapat ikut menciptakan lingkungan pendidikan yang positif.</p>
+        </div>
+        <div class="about-panel">
+          <strong>Berawal dari ide, tumbuh menjadi aksi.</strong>
+          <p>Setiap warga sekolah memiliki peran dalam menjaga suasana belajar yang aman, nyaman, dan saling mendukung.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="informasi">
+      <div class="section">
+        <div class="section-label">Jelajahi</div>
+        <h2>Informasi dan Partisipasi</h2>
+        <p class="intro">Gunakan website ini untuk mengenal sekolah dan menyampaikan masukan demi kemajuan bersama.</p>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-icon">🏫</div>
+            <h3>Profil Sekolah</h3>
+            <p>Kenali lingkungan dan semangat pendidikan SMAN 2 Ranah Pesisir.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">📢</div>
+            <h3>Aspirasi Siswa</h3>
+            <p>Sampaikan saran, ide, kritik, atau masukan secara tertib melalui formulir aspirasi.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">🤝</div>
+            <h3>Kolaborasi</h3>
+            <p>Mari ikut berkontribusi menciptakan sekolah yang lebih baik untuk semua.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="aspiration">
+        <div>
+          <div class="section-label" style="color:#ffcf70">Suara Siswa, Perubahan Bersama</div>
+          <h2>Punya ide atau masukan untuk sekolah?</h2>
+          <p>Setiap aspirasi dapat menjadi langkah awal menuju perubahan yang positif. Sampaikan dengan jelas dan bertanggung jawab.</p>
+        </div>
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScL0wgz8B9TzNGdsqM_ShGYjJPk7ovZcKV_UJf1CWJhbn-57A/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">ASPIRASI SISWA ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>SMAN 2 RANAH PESISIR</strong><br>
+    Website informasi sekolah • Dibuat untuk mendukung komunikasi warga sekolah
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
